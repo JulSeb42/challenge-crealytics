@@ -6,20 +6,26 @@ import styled from "styled-components"
 import ButtonPagination from "./ButtonPagination"
 
 // Styles
-const Container = styled.div`
-    
-`
+const Container = styled.div``
 
-function Pagination(props) {
+const Input = styled.input``
+
+function Paginator(props) {
     return (
         <Container>
+            <Input
+                type="number"
+                onChange={props.onChange}
+                value={props.value}
+                min="1"
+                max={props.max}
+            />
+
             <ButtonPagination
                 onClick={props.handlePrevious}
                 prev
                 disabled={props.disablePrevious}
             />
-
-            {props.children}
 
             <ButtonPagination
                 onClick={props.handleNext}
@@ -30,5 +36,4 @@ function Pagination(props) {
     )
 }
 
-export default Pagination
-
+export default Paginator

@@ -1,28 +1,25 @@
 // Packages
 import React, { useState } from "react"
-import styled from "styled-components"
+// import styled from "styled-components"
 import { v4 as uuid } from "uuid"
 
 // Components
 import List from "./List"
 import Card from "./Card"
-import Pagination from "./pagination/Pagination"
-import ButtonPagination from "./pagination/ButtonPagination"
+import Paginator from "./pagination/Paginator"
 
 function ProductList({ products, RenderComponent, pageLimit, dataLimit }) {
     const [pages] = useState(Math.round(products.length / dataLimit))
     const [currentPage, setCurrentPage] = useState(1)
 
+    console.log(pages)
+
     const goToNextPage = () => {
-        setCurrentPage(page => page + 1)
+        setCurrentPage(page => parseInt(page) + 1)
     }
 
     const goToPreviousPage = () => {
-        setCurrentPage(page => page - 1)
-    }
-
-    const changePage = e => {
-        setCurrentPage(Number(e.target.textContent))
+        setCurrentPage(page => parseInt(page) - 1)
     }
 
     const getPaginatedData = () => {
@@ -31,9 +28,8 @@ function ProductList({ products, RenderComponent, pageLimit, dataLimit }) {
         return products.slice(startIndex, endIndex)
     }
 
-    const getPaginationGroup = () => {
-        let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit
-        return new Array(pageLimit).fill().map((_, i) => start + i + 1)
+    const handlePaginator = e => {
+        setCurrentPage(e.target.value)
     }
 
     return (
@@ -42,21 +38,15 @@ function ProductList({ products, RenderComponent, pageLimit, dataLimit }) {
                 <Card product={product} key={uuid()} />
             ))}
 
-            <Pagination
+            <Paginator
+                onChange={handlePaginator}
+                value={currentPage}
+                max={pages}
                 handlePrevious={goToPreviousPage}
                 disablePrevious={currentPage === 1 ? "disabled" : ""}
                 handleNext={goToNextPage}
                 disableNext={currentPage === pages ? "disabled" : ""}
-            >
-                {getPaginationGroup().map(number => (
-                    <ButtonPagination
-                        onClick={changePage}
-                        className={currentPage === number ? "active" : ""}
-                    >
-                        {number}
-                    </ButtonPagination>
-                ))}
-            </Pagination>
+            />
         </List>
     )
 }
