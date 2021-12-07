@@ -10,6 +10,8 @@ const Container = styled.div``
 
 const Input = styled.input``
 
+const Active = styled.p``
+
 function Paginator(props) {
     return (
         <Container>
@@ -32,6 +34,10 @@ function Paginator(props) {
                 next
                 disabled={props.disableNext}
             />
+
+            <Active>
+                Page {props.value} of {props.max}
+            </Active>
         </Container>
     )
 }

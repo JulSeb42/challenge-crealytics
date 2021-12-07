@@ -3,8 +3,9 @@ import React from "react"
 import styled from "styled-components"
 
 // Utils
-import ConvertPrice from "./utils/ConvertPrice"
-import ArrayAdditional from "./utils/ArrayAdditional"
+import ConvertPrice from "../utils/ConvertPrice"
+import ArrayAdditional from "../utils/ArrayAdditional"
+import Modal from "./Modal"
 
 const Container = styled.div`
     width: 100%;
@@ -52,6 +53,8 @@ function Card({ product }) {
                     ConvertPrice(product.price) && (
                     <p>Sale price: {product.sale_price}</p>
                 )}
+
+                <Modal />
 
                 {/* {product.additional_image_link &&
                     ArrayAdditional(product.additional_image_link).map(

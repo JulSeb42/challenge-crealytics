@@ -1,24 +1,28 @@
 // Packages
-import React from "react"
+import React, {useState} from "react"
 
 // Components
 import Container from "./components/Container"
-import ProductList from "./components/ProductList"
-
-// Utils
-import ConvertPrice from "./components/utils/ConvertPrice"
+import ProductList from "./components/list/ProductList"
+import SearchContainer from "./components/search/SearchContainer"
 
 // Data
 import products from "./data/products.json"
 
-console.log(ConvertPrice("249.95 EUR"))
-
 function App() {
-    console.log(products)
+    const [productsList, setProductsList] = useState(products)
+    const [query, setQuery] = useState("")
+
+    const handleSearch = e => {
+        setQuery(e.target.value)
+    }
+
+    let results = productsList.filter(product => product.title.toLowerCase().includes(query))
 
     return (
         <Container>
-            <ProductList products={products} dataLimit={100} pageLimit={20} />
+            <SearchContainer handleSearch={handleSearch} />
+            <ProductList products={results} dataLimit={100} pageLimit={20} />
         </Container>
     )
 }
