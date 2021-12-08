@@ -16,7 +16,7 @@ function ListSuggestions(props) {
         <Container className={props.open}>
             {props.suggestions.map(suggestion => (
                 <Item key={uuid()} onClick={props.onClick}>
-                    {suggestion}
+                    {suggestion.title}
                 </Item>
             ))}
         </Container>

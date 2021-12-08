@@ -4,6 +4,7 @@ import styled from "styled-components"
 
 // Components
 import Icon from "../ui/Icon"
+import AsyncImage from "./AsyncImage"
 
 // Styles
 const Container = styled.div`
@@ -24,7 +25,7 @@ const Content = styled.div`
     justify-content: center;
 `
 
-const Img = styled.img`
+const Img = styled(AsyncImage)`
     width: 90%;
     height: 100%;
     object-fit: contain;
