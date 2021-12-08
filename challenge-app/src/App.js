@@ -1,5 +1,5 @@
 // Packages
-import React, {useState} from "react"
+import React, { useState } from "react"
 
 // Components
 import Container from "./components/Container"
@@ -13,15 +13,30 @@ function App() {
     const [productsList, setProductsList] = useState(products)
     const [query, setQuery] = useState("")
 
+    const [gender, setGender] = useState("all")
+
     const handleSearch = e => {
         setQuery(e.target.value)
     }
 
-    let results = productsList.filter(product => product.title.toLowerCase().includes(query))
+    let results = productsList.filter(product =>
+        product.title.toLowerCase().includes(query)
+    )
+
+    const handleGenderChange = e => {
+        setGender(e.target.value)
+    }
+
+    if (gender !== "all") {
+        results = results.filter(product => gender === product.gender)
+    }
 
     return (
         <Container>
-            <SearchContainer handleSearch={handleSearch} />
+            <SearchContainer
+                handleSearch={handleSearch}
+                handleGender={handleGenderChange}
+            />
             <ProductList products={results} dataLimit={100} pageLimit={20} />
         </Container>
     )
