@@ -6,6 +6,7 @@ import styled from "styled-components"
 import ConvertPrice from "../utils/ConvertPrice"
 import ArrayAdditional from "../utils/ArrayAdditional"
 import Modal from "./Modal"
+import AsyncImage from "./AsyncImage"
 
 const Container = styled.div`
     width: 100%;
@@ -15,7 +16,7 @@ const Container = styled.div`
     align-items: center;
 `
 
-const Img = styled.img`
+const Img = styled(AsyncImage)`
     width: 100px;
     height: 100px;
     object-fit: contain;
@@ -63,11 +64,6 @@ function Card({ product }) {
                         product.additional_image_link
                     )}
                 />
-
-                {/* {product.additional_image_link &&
-                    ArrayAdditional(product.additional_image_link).map(
-                        image => <img src={image} alt="" />
-                    )} */}
             </Content>
         </Container>
     )
