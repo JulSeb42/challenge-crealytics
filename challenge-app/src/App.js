@@ -61,6 +61,8 @@ function App() {
 
     return (
         <Container>
+            <h1>Our products</h1>
+            
             <SearchContainer
                 handleSearch={handleSearch}
                 handleGender={handleGenderChange}

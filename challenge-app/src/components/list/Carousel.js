@@ -46,10 +46,8 @@ function Carousel(props) {
     const [active, setActive] = useState(0)
 
     // Navigate through images
-    const handlePrev = () =>
-        setActive(active !== 0 ? active - 1 : allPictures().length - 1)
-    const handleNext = () =>
-        setActive(active !== allPictures().length - 1 ? active + 1 : 0)
+    const handlePrev = () => setActive(active !== 0 ? active - 1 : allPictures().length - 1)
+    const handleNext = () => setActive(active !== allPictures().length - 1 ? active + 1 : 0)
 
     return allPictures().length > 0 ? (
         <Container>
