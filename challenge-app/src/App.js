@@ -21,9 +21,32 @@ function App() {
         setQuery(e.target.value)
     }
 
+    // Get all titles for suggestions
+    const getAllTitles = () => {
+        let arr = []
+
+        for (let i = 0; i < results.length; i++) {
+            arr.push(results[i].title)
+        }
+
+        return arr
+    }
+
     let results = productsList.filter(product =>
         product.title.toLowerCase().includes(query)
     )
+
+    // Filter suggestions
+    const [titlesList] = useState(getAllTitles())
+
+    let resultsSuggestions = titlesList.filter(product =>
+        product.toLowerCase().includes(query)
+    )
+
+    const handleClickSuggestion = e => {
+        setQuery(e.target.innerText.toLowerCase())
+        console.log(e.target.innerText)
+    }
 
     // Filter by gender
     const [gender, setGender] = useState("all")
@@ -62,11 +85,14 @@ function App() {
     return (
         <Container>
             <h1>Our products</h1>
-            
+
             <SearchContainer
                 handleSearch={handleSearch}
                 handleGender={handleGenderChange}
                 handleSale={filterOnSale}
+                listSuggestions={resultsSuggestions}
+                handleClick={handleClickSuggestion}
+                querySearch={query}
             />
 
             {results.length > 0 ? (

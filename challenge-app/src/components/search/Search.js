@@ -20,7 +20,7 @@ function Search(props) {
         // Search input
         <Container>
             <Label htmlFor={props.id}>{props.id.charAt(0).toUpperCase() + props.id.slice(1)}</Label>
-            <Input type="search" id={props.id} name={props.id} onChange={props.onChange} />
+            <Input type="search" id={props.id} name={props.id} onChange={props.onChange} value={props.querySearch}/>
         </Container>
     )
 }

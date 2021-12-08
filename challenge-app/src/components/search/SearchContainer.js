@@ -4,6 +4,7 @@ import styled from "styled-components"
 
 // Components
 import Search from "./Search"
+import ListSuggestions from "./ListSuggestions"
 import Select from "./Select"
 import Checkbox from "./Checkbox"
 
@@ -16,8 +17,15 @@ function SearchContainer(props) {
     return (
         <Container>
             {/* Search bar */}
-            <Search id="search" onChange={props.handleSearch} />
-            
+            <Search id="search" onChange={props.handleSearch} querySearch={props.querySearch} />
+
+            {/* Suggestions */}
+            <ListSuggestions
+                suggestions={props.listSuggestions}
+                open={props.handleOpenSuggestions}
+                onClick={props.handleClick}
+            />
+
             {/* Select gender */}
             <Select
                 id="gender"
