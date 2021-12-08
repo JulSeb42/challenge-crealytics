@@ -39,6 +39,7 @@ function Card({ product }) {
                 <p>Gtin: {product.gtin}</p>
 
                 <p>
+                    {/* Transform error in gender to unisex */}
                     Gender:{" "}
                     {product.gender === "male"
                         ? "Male"

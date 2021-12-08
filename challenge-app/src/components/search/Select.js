@@ -22,7 +22,7 @@ function Select(props) {
                 name={props.id}
             >
                 {props.options.map(option => (
-                    <option value={option}>
+                    <option value={option} key={option}>
                         {option.charAt(0).toUpperCase() + option.slice(1)}
                     </option>
                 ))}

@@ -8,7 +8,7 @@ import List from "./List"
 import Card from "./Card"
 import Paginator from "../pagination/Paginator"
 
-function ProductList({ products, dataLimit }) {
+function ProductList({ products, dataLimit, max }) {
     const [pages] = useState(Math.round(products.length / dataLimit))
     const [currentPage, setCurrentPage] = useState(1)
 
@@ -30,31 +30,29 @@ function ProductList({ products, dataLimit }) {
         setCurrentPage(e.target.value)
     }
 
-    return (
-        <List>
+    const PaginatorOptions = () => {
+        return (
             <Paginator
                 onChange={handlePaginator}
                 value={currentPage}
-                max={pages}
+                max={max}
                 handlePrevious={goToPreviousPage}
                 disablePrevious={currentPage === 1 ? "disabled" : ""}
                 handleNext={goToNextPage}
-                disableNext={currentPage === pages ? "disabled" : ""}
+                disableNext={currentPage === max ? "disabled" : ""}
             />
+        )
+    }
 
+    return (
+        <List>
+            <PaginatorOptions />
+            
             {getPaginatedData().map(product => (
                 <Card product={product} key={uuid()} />
             ))}
 
-            <Paginator
-                onChange={handlePaginator}
-                value={currentPage < pages ? currentPage : pages}
-                max={pages}
-                handlePrevious={goToPreviousPage}
-                disablePrevious={currentPage === 1 ? "disabled" : ""}
-                handleNext={goToNextPage}
-                disableNext={currentPage === pages ? "disabled" : ""}
-            />
+            <PaginatorOptions />
         </List>
     )
 }
