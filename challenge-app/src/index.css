@@ -115,6 +115,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.stop-scrolling {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
 table {
     border-collapse: collapse;
     border-spacing: 0;

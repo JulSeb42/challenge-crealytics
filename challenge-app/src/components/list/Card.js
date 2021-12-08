@@ -29,6 +29,8 @@ const Content = styled.span``
 function Card({ product }) {
     // const [isModalOpen, setIsModalOpen] = useState(false)
 
+    // console.log(ArrayAdditional(product.additional_image_link))
+
     return (
         <Container>
             <Img src={product.image_link} alt={product.title} />
@@ -55,7 +57,12 @@ function Card({ product }) {
                     <p>Sale price: {product.sale_price}</p>
                 )}
 
-                <Modal />
+                <Modal
+                    image_link={product.image_link}
+                    additional_image_link={ArrayAdditional(
+                        product.additional_image_link
+                    )}
+                />
 
                 {/* {product.additional_image_link &&
                     ArrayAdditional(product.additional_image_link).map(

@@ -57,6 +57,8 @@ function App() {
         return calculateMax !== 0 ? calculateMax : 1
     }
 
+    // results = results.filter(product => product.additional_image_link === "")
+
     return (
         <Container>
             <SearchContainer

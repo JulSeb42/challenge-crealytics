@@ -1,5 +1,5 @@
 // Packages
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 // import styled from "styled-components"
 import { v4 as uuid } from "uuid"
 
@@ -9,7 +9,7 @@ import Card from "./Card"
 import Paginator from "../pagination/Paginator"
 
 function ProductList({ products, dataLimit, max }) {
-    const [pages] = useState(Math.round(products.length / dataLimit))
+    // const [pages] = useState(Math.round(products.length / dataLimit))
     const [currentPage, setCurrentPage] = useState(1)
 
     const goToNextPage = () => {
@@ -30,11 +30,16 @@ function ProductList({ products, dataLimit, max }) {
         setCurrentPage(e.target.value)
     }
 
+    // Go back to top of the page when changing page
+    useEffect(() => {
+        window.scrollTo({ behavior: "smooth", top: 0 })
+    }, [currentPage])
+
     const PaginatorOptions = () => {
         return (
             <Paginator
                 onChange={handlePaginator}
-                value={currentPage}
+                value={currentPage < max ? currentPage : max}
                 max={max}
                 handlePrevious={goToPreviousPage}
                 disablePrevious={currentPage === 1 ? "disabled" : ""}
@@ -47,7 +52,7 @@ function ProductList({ products, dataLimit, max }) {
     return (
         <List>
             <PaginatorOptions />
-            
+
             {getPaginatedData().map(product => (
                 <Card product={product} key={uuid()} />
             ))}
