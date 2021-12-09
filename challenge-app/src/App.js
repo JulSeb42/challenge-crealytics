@@ -1,89 +1,20 @@
 // Packages
-import React, { useState } from "react"
+import React from "react"
 
-// Components
-import Container from "./components/Container"
-import ProductList from "./components/list/ProductList"
-import SearchContainer from "./components/search/SearchContainer"
+// Content
+import HelmetMeta from "./components/utils/Helmet"
+import Page from "./components/Page"
 
-// Utils
-import ConvertPrice from "./components/utils/ConvertPrice"
-
-// Data
-import products from "./data/products.json"
+// Styles
+import GlobalStyles from "./components/styles/GlobalStyles"
 
 function App() {
-    // Search in list
-    const [productsList] = useState(products)
-    const [query, setQuery] = useState("")
-
-    const handleSearch = e => {
-        setQuery(e.target.value)
-    }
-
-    let results = productsList.filter(product =>
-        product.title.toLowerCase().includes(query)
-    )
-
-    const handleClickSuggestion = e => {
-        setQuery(e.target.innerText.toLowerCase())
-    }
-
-    // Filter by gender
-    const [gender, setGender] = useState("all")
-
-    const handleGenderChange = e => {
-        setGender(e.target.value)
-    }
-
-    if (gender !== "all") {
-        results = results.filter(product => gender === product.gender)
-    }
-
-    // Show only items on sale
-    const [sale, setSale] = useState(false)
-
-    const filterOnSale = e => {
-        setSale(e.target.checked)
-    }
-
-    if (sale) {
-        results = results.filter(
-            product =>
-                ConvertPrice(product.sale_price) < ConvertPrice(product.price)
-        )
-    }
-
-    // Calculate max pages, and prevent having 0 as number of pages
-    const max = () => {
-        const calculateMax = Math.round(results.length / 100)
-
-        return calculateMax !== 0 ? calculateMax : 1
-    }
-
-    // results = results.filter(product => product.additional_image_link === "")
-
-
-
     return (
-        <Container>
-            <h1>Our products</h1>
-
-            <SearchContainer
-                handleSearch={handleSearch}
-                handleGender={handleGenderChange}
-                handleSale={filterOnSale}
-                listSuggestions={results.slice(0, 10)}
-                handleClick={handleClickSuggestion}
-                querySearch={query}
-            />
-
-            {results.length > 0 ? (
-                <ProductList products={results} dataLimit={100} max={max()} />
-            ) : (
-                <p>No results found!</p>
-            )}
-        </Container>
+        <>
+            <HelmetMeta />
+            <GlobalStyles />
+            <Page />
+        </>
     )
 }
 

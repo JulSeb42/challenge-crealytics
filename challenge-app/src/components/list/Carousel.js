@@ -5,6 +5,7 @@ import styled from "styled-components"
 // Components
 import Icon from "../ui/Icon"
 import AsyncImage from "./AsyncImage"
+import * as Variables from "../styles/Variables"
 
 // Styles
 const Container = styled.div`
@@ -15,10 +16,25 @@ const Container = styled.div`
     justify-content: space-between;
 `
 
-const Button = styled.button``
+const Button = styled.button`
+    --size: 48px;
+    width: var(--size);
+    height: var(--size);
+    border: 1px solid transparent;
+    background-color: ${Variables.Colors.Primary};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: ${Variables.Transitions.Short};
+
+    &:hover {
+        background-color: ${Variables.Colors.PrimaryHover};
+    }
+`
 
 const Content = styled.div`
-    width: 100%;
+    flex-grow: 1;
     height: 100%;
     display: flex;
     align-items: center;
@@ -53,7 +69,11 @@ function Carousel(props) {
     return allPictures().length > 0 ? (
         <Container>
             <Button onClick={handlePrev}>
-                <Icon name="chevron-left" color="black" size={32} />
+                <Icon
+                    name="chevron-left"
+                    color={Variables.Colors.White}
+                    size={32}
+                />
             </Button>
 
             <Content>
@@ -68,11 +88,17 @@ function Carousel(props) {
             </Content>
 
             <Button onClick={handleNext}>
-                <Icon name="chevron-right" color="black" size={32} />
+                <Icon
+                    name="chevron-right"
+                    color={Variables.Colors.White}
+                    size={32}
+                />
             </Button>
         </Container>
     ) : (
-        <Img src={props.image_link} alt="Product image" />
+        <Container>
+            <Img src={props.image_link} alt="Product image" />
+        </Container>
     )
 }
 

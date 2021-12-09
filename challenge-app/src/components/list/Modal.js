@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 // Components
+import * as Variables from "../styles/Variables"
 import Icon from "../ui/Icon"
 import Carousel from "./Carousel"
 
@@ -10,7 +11,20 @@ import Carousel from "./Carousel"
 const Container = styled.div`
 `
 
-const Button = styled.button``
+const Button = styled.button`
+    border: none;
+    padding: ${Variables.Margins.XS} ${Variables.Margins.S};
+    font-size: ${Variables.FontSizes.Body};
+    font-weight: ${Variables.FontWeights.Bold};
+    background-color: ${Variables.Colors.Primary};
+    color: ${Variables.Colors.White};
+    border-radius: ${Variables.Radiuses.M};
+    transition: ${Variables.Transitions.Short};
+
+    &:hover {
+        background-color: ${Variables.Colors.PrimaryHover}
+    }
+`
 
 const ModalContent = styled.div`
     position: fixed;
@@ -62,7 +76,7 @@ function Modal(props) {
                 <Close
                     name="close"
                     size={32}
-                    color="white"
+                    color={Variables.Colors.White}
                     onClick={handleOpen}
                 />
 
