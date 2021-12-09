@@ -5,7 +5,7 @@ import styled from "styled-components"
 // Components
 import * as Variables from "../styles/Variables"
 import Modal from "./Modal"
-import AsyncImage from "./AsyncImage"
+import AsyncImage from "../utils/AsyncImage"
 
 // Utils
 import ConvertPrice from "../utils/ConvertPrice"

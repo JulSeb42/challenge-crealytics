@@ -8,8 +8,7 @@ import Icon from "../ui/Icon"
 import Carousel from "./Carousel"
 
 // Styles
-const Container = styled.div`
-`
+const Container = styled.div``
 
 const Button = styled.button`
     border: none;
@@ -22,7 +21,7 @@ const Button = styled.button`
     transition: ${Variables.Transitions.Short};
 
     &:hover {
-        background-color: ${Variables.Colors.PrimaryHover}
+        background-color: ${Variables.Colors.PrimaryHover};
     }
 `
 

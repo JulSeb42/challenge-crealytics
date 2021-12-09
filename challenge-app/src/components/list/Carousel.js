@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 // Components
 import Icon from "../ui/Icon"
-import AsyncImage from "./AsyncImage"
+import AsyncImage from "../utils/AsyncImage"
 import * as Variables from "../styles/Variables"
 
 // Styles

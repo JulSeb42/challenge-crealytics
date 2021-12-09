@@ -64,9 +64,9 @@ function Toggle(props) {
                 id={props.id}
                 onChange={props.onChange}
             />
-            
+
             <ToggleStyled htmlFor={props.id} className="toggle" />
-            
+
             <Label htmlFor={props.id}>{props.label}</Label>
         </Container>
     )

@@ -1,70 +1,133 @@
-# Getting Started with Create React App
+# Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Run the app
 
-## Available Scripts
+If you want to open the app for the first time, open this folder in your terminal and run `npm install`. Then run `npm start` to open a local server at [http://localhost:3000/](http://localhost:3000/).
 
-In the project directory, you can run:
+If you do not have npm installed on your machine, you can download it here: [https://nodejs.org/](https://nodejs.org/) (this will install Node and npm on your computer).
 
-### `yarn start`
+## Build app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To build and deploy the app, open the folder in the terminal and run `npm run build`.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Structure
 
-### `yarn test`
+To structure this app, I followed the principles of Atomic design (and the magic of React), where all the components are divided into smaller ones. In the case we want to implement more pages, I decided to have in the `App.js` file only the global components, and have the rest inside the `Page` component. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Use data
 
-### `yarn build`
+To display the data, first convert the `.csv` file to a `.json` file. You can find a converter here: [https://csvjson.com/](https://csvjson.com/). Then, import the json file in the page `src/components/Page.js`:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+import products from "../data/products.json"
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Do not forget to import the `ProductList` component in your `Page.js`:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+import ProductList from "./list/ProductList"
+```
 
-### `yarn eject`
+You can now display a list of all the products in the JSX:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+<ProductList products={products} dataLimit={100} max={max()} />
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Here, the `dataLimit` attribute controls how many products are displayed on each pages. The `max()` function calculates the maximum number of pages. For a better user experience, and because the product list contains around 20k products, the pagination is using an input for the page number and buttons to navigate.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If there are errors in the gender values, the products will be displayed as `unisex`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Search and filtering
 
-## Learn More
+All the logic for search and filtering can be found in the `Page` component, and in the `search/SearchContainer` component for the suggestions.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For gender filtering, the app is using radio buttons instead of a dropdown to get a better user experience.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Autocomplete feature
 
-### Code Splitting
+This app has an autocomplete feature when users type in the search field. For better performances, the list of suggestions display only the first 20 results. You can edit this by going to the `Page` component, and edit this value:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+const maxSuggestions = 20
+```
 
-### Analyzing the Bundle Size
+## Fetch images asynchronously
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+For better performances, images are fetched asynchronously. If you want to add images, you can use the component `utils/AsyncImage`.
 
-### Making a Progressive Web App
+## Display expanded images
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Each product card contains a modal which can be opened on a click. The logic for this feature is in the component `list/Modal.js`. When clicked, the buttons disable scrolling inside the page's `body`, and opens either a carousel (when the product has more than one image), or the only image of the product. 
 
-### Advanced Configuration
+## Utils
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Inside the `components/utils` folder, you can find several functions:
 
-### Deployment
+### ArrayAdditional
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This function transforms the string for `additional_image_link` into an array of links.
 
-### `yarn build` fails to minify
+### AsyncImage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The logic for fetching images asynchronously.
+
+### ConvertPrice
+
+This function is used to calculate if the `sale_price` value is lower than the `price`. 
+
+### Helmet
+
+This component is used for the `<head>` of the website, and uses the package React Helmet ([https://www.npmjs.com/package/react-helmet](https://www.npmjs.com/package/react-helmet)).
+
+## Testing
+
+<!-- Add doc testing -->
+
+## Styles
+
+This app uses Styled Components for styling, you can find the documentation here: [https://styled-components.com/](https://styled-components.com/).
+
+### CSS file
+
+The only CSS file in the app is `index.css`, which is used only as a reset.
+
+### Variables
+
+All the variables for colors, fonts, etc., are stored inside the file `styles/Variables.js`. You can edit them there, and import the file in other components like this:
+
+```
+import * as Variables from "./styles/Variables"
+```
+
+Now you can use these variables. For example, if you want to use them in a styled-component:
+
+```
+const Button = styled.button`
+    background-color: ${Variables.Colors.Primary};
+`
+```
+
+### Global styles
+
+The app is using styled-components `createGlobalStyle` inside the component `styles/GlobalStyles`. Use this file only for general styling, like for `html`, `body`, etc. Do not add components styles there, as you should have them in the components pages. 
+
+## Other dependencies
+
+### react-svg
+
+This package is used to import SVG elements inside our JSX. For example, this app is using it for icons:
+
+```
+<Icon name="chevron-left" color={Variables.Colors.White} size={32} />
+```
+
+Here, the `name` attribute is the name of the SVG file (without `.svg`), the `color` is from the `Variables` file, and the `size` has to be an integer. If you want to add icons to the app, download icons from [https://boxicons.com/](https://boxicons.com/) and put them in the folder `public/icons`. 
+
+### uuid
+
+This package generates keys for maping lists, as React sends errors if there's no keys. It can be used like this:
+
+```
+{list.map(item => <li key={uuid()}>{item}</li>)}
+```

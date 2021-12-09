@@ -42,7 +42,11 @@ function ListSuggestions(props) {
     return (
         <Container className={props.open}>
             {props.suggestions.map(suggestion => (
-                <Item key={uuid()} onClick={props.onClick} onMouseDown={props.onMouseDown}>
+                <Item
+                    key={uuid()}
+                    onClick={props.onClick}
+                    onMouseDown={props.onMouseDown}
+                >
                     {suggestion.title}
                 </Item>
             ))}

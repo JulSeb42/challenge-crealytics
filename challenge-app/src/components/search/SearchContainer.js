@@ -34,7 +34,7 @@ const SelectorsContainer = styled.div`
     justify-content: flex-start;
 
     span:not(:last-child) {
-        margin-right: ${Variables.Margins.XS}
+        margin-right: ${Variables.Margins.XS};
     }
 `
 

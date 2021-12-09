@@ -57,7 +57,6 @@ function Paginator(props) {
                 max={props.max}
             />{" "}
             of {props.max}
-
             <ButtonsContainer>
                 <ButtonPagination
                     onClick={props.handlePrevious}

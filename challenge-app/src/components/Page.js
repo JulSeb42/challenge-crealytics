@@ -64,6 +64,9 @@ function Page() {
         return calculateMax !== 0 ? calculateMax : 1
     }
 
+    // Limit the number of results in the suggestions list
+    const maxSuggestions = 20
+
     // results = results.filter(product => product.additional_image_link === "")
 
     return (
@@ -74,7 +77,7 @@ function Page() {
                 handleSearch={handleSearch}
                 handleGender={handleGenderChange}
                 handleSale={filterOnSale}
-                listSuggestions={results.slice(0, 20)}
+                listSuggestions={results.slice(0, maxSuggestions)}
                 handleClickSuggestions={handleClickSuggestions}
                 querySearch={query}
             />
