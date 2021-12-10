@@ -67,8 +67,6 @@ function Page() {
     // Limit the number of results in the suggestions list
     const maxSuggestions = 20
 
-    // results = results.filter(product => product.additional_image_link === "")
-
     return (
         <Container>
             <h1>Our products</h1>

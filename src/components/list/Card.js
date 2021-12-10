@@ -62,8 +62,6 @@ const Crossed = styled.span`
     text-decoration: line-through;
 `
 
-// title, gtin, gender, the two prices (price and sale_price) together with a thumbnail of the image_link
-
 function Card({ product }) {
     return (
         <Container className="card">
