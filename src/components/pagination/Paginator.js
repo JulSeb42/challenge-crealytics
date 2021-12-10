@@ -11,6 +11,10 @@ const Container = styled.p`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+
+    .max {
+        margin-left: ${Variables.Margins.XXS};
+    }
 `
 
 const Input = styled.input`
@@ -56,7 +60,7 @@ function Paginator(props) {
                 min="1"
                 max={props.max}
             />{" "}
-            of {props.max}
+            of <span className="max">{props.max}</span>
             <ButtonsContainer>
                 <ButtonPagination
                     onClick={props.handlePrevious}

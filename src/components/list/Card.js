@@ -57,7 +57,7 @@ const Crossed = styled.span`
 
 function Card({ product }) {
     return (
-        <Container>
+        <Container className="card">
             {product.number}
             <Img src={product.image_link} alt={product.title} />
 

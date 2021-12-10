@@ -42,7 +42,7 @@ function Selector(props) {
                 defaultChecked={props.defaultChecked}
             />
 
-            <Label htmlFor={props.id}>{props.label}</Label>
+            <Label htmlFor={props.id} id={`label-${props.id}`}>{props.label}</Label>
         </Container>
     )
 }
