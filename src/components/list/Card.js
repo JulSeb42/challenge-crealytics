@@ -18,13 +18,22 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     border-radius: ${Variables.Radiuses.M};
+
+    @media ${Variables.Breakpoints.MobileL} {
+        flex-direction: column;
+    }
 `
 
 const Img = styled(AsyncImage)`
     width: 100px;
     height: 100px;
     object-fit: contain;
-    margin-right: 16px;
+    margin-right: ${Variables.Margins.M};
+
+    @media ${Variables.Breakpoints.MobileL} {
+        margin-right: 0;
+        margin-bottom: ${Variables.Margins.M};
+    }
 `
 
 const Content = styled.div`
