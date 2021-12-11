@@ -82,7 +82,7 @@ This component is used for the `<head>` of the website, and uses the package Rea
 
 ## Testing
 
-To run tests, run `npm run test` in your terminal. This app is using [puppeteer](https://pptr.dev/) as testing library. All tests can be found inside the page `src/tests/App.test.js`.
+To run tests, run `npm run test` in your terminal. This app is using [Jest](https://jestjs.io/) and [Puppeteer](https://pptr.dev/) as testing libraries. All the tests can be found inside the page `src/tests/App.test.js`.
 
 ## Styles
 
